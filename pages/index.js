@@ -27,7 +27,7 @@ export default function Home({products}) {
         appId: "1dc2c7d5-bf47-4500-8bfe-d5eed854a86e",
       });
     });
-  }, [])
+  })
 
   const categoryNames = [... new Set(products.map(p => p.category))]
   console.log(categoryNames)
