@@ -27,7 +27,7 @@ export default function Home({products}) {
         appId: "1dc2c7d5-bf47-4500-8bfe-d5eed854a86e",
       });
     });
-  })
+  }, [])
 
   const categoryNames = [... new Set(products.map(p => p.category))]
   console.log(categoryNames)
@@ -37,7 +37,6 @@ export default function Home({products}) {
   }
   return (
     <Layout>
-      <Header/>
       <input value={phrase} onChange={e => setPhrase(e.target.value)} type='text' placeholder="Search for Products" className='bg-gray-100 w-full py-2 px-4 rounded-xl'/>
         <div>
           {categoryNames.map(catName => 
@@ -66,9 +65,11 @@ export default function Home({products}) {
 export async function getServerSideProps(){
   await initMangoose();
   const products= await findAllProducts()
+  const p=JSON.parse(JSON.stringify( products))
+  console.log(p)
   return {
     props:{
-      products: JSON.parse(JSON.stringify( products)),
+      products: p,
     }
   }
 }
