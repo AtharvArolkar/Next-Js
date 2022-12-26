@@ -30,7 +30,7 @@ export default function Home({products}) {
   }
   return (
     <Layout>
-      {/* <input value={phrase} onChange={e => setPhrase(e.target.value)} type='text' placeholder="Search for Products" className='bg-gray-100 w-full py-2 px-4 rounded-xl'/>
+      <input value={phrase} onChange={e => setPhrase(e.target.value)} type='text' placeholder="Search for Products" className='bg-gray-100 w-full py-2 px-4 rounded-xl'/>
         <div>
           {categoryNames.map(catName => 
             <div key={catName}>
@@ -49,9 +49,8 @@ export default function Home({products}) {
              
             </div>
           )}  
-        </div> */}
+        </div>
         <Head>
-        <title>OneSignal + Next.js</title>
         <meta
           name="description"
           content="Integrating OneSignal with a Next.js app."
@@ -67,20 +66,6 @@ export default function Home({products}) {
       </Head>
 
       <main className={styles.main}>
-        <div>
-          <button className={`addbutton btn waves-effect waves-light`} >Add to home screen
-            {/* <i className="material-icons right">send</i> */}
-          </button>
-          <h1 className={styles.title}>
-            Welcome to <a href="https://nextjs.org">Next.js!</a>
-          </h1>
-        </div>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h2>Documentation &rarr;</h2>
