@@ -12,14 +12,7 @@ import { findAllProducts } from './api/products';
 // const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({products}) {
-  // const [proInfo, setProInfo] = useState([]);
   const[phrase, setPhrase] =useState([]);
-  // useEffect(()=>{
-  //   fetch('api/products')
-  //   .then(response => response.json())
-  //   .then(json => setProInfo(json));
-  // },[])
-  // console.log(proInfo)
   useEffect(() => {
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function () {
@@ -37,7 +30,7 @@ export default function Home({products}) {
   }
   return (
     <Layout>
-      <input value={phrase} onChange={e => setPhrase(e.target.value)} type='text' placeholder="Search for Products" className='bg-gray-100 w-full py-2 px-4 rounded-xl'/>
+      {/* <input value={phrase} onChange={e => setPhrase(e.target.value)} type='text' placeholder="Search for Products" className='bg-gray-100 w-full py-2 px-4 rounded-xl'/>
         <div>
           {categoryNames.map(catName => 
             <div key={catName}>
@@ -56,7 +49,84 @@ export default function Home({products}) {
              
             </div>
           )}  
+        </div> */}
+        <Head>
+        <title>OneSignal + Next.js</title>
+        <meta
+          name="description"
+          content="Integrating OneSignal with a Next.js app."
+        />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
+        <script
+          src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+          async=""
+        ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="/Push-Notification-OneSignal-main/public/js/index.js"></script>
+      </Head>
+
+      <main className={styles.main}>
+        <div>
+          <button className={`addbutton btn waves-effect waves-light`} >Add to home screen
+            {/* <i className="material-icons right">send</i> */}
+          </button>
+          <h1 className={styles.title}>
+            Welcome to <a href="https://nextjs.org">Next.js!</a>
+          </h1>
         </div>
+
+        <p className={styles.description}>
+          Get started by editing{' '}
+          <code className={styles.code}>pages/index.js</code>
+        </p>
+
+        <div className={styles.grid}>
+          <a href="https://nextjs.org/docs" className={styles.card}>
+            <h2>Documentation &rarr;</h2>
+            <p>Find in-depth information about Next.js features and API.</p>
+          </a>
+
+          <a href="https://nextjs.org/learn" className={styles.card}>
+            <h2>Learn &rarr;</h2>
+            <p>Learn about Next.js in an interactive course with quizzes!</p>
+          </a>
+
+          <a
+            href="https://github.com/vercel/next.js/tree/canary/examples"
+            className={styles.card}
+          >
+            <h2>Examples &rarr;</h2>
+            <p>Discover and deploy boilerplate example Next.js projects.</p>
+          </a>
+
+          <a
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.card}
+          >
+            <h2>Deploy &rarr;</h2>
+            <p>
+              Instantly deploy your Next.js site to a public URL with Vercel.
+            </p>
+          </a>
+        </div>
+      </main>
+
+      <footer className={styles.footer}>
+        <a
+          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by{' '}
+          <span className={styles.logo}>
+            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+          </span>
+
+        </a>
+      </footer>
         
     </Layout>
   )
