@@ -8,6 +8,7 @@ import { initMangoose } from '../lib/mongoose';
 // import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import { findAllProducts } from './api/products';
+import Products from './Products';
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -31,7 +32,7 @@ export default function Home({products}) {
   return (
     <Layout>
       <input value={phrase} onChange={e => setPhrase(e.target.value)} type='text' placeholder="Search for Products" className='bg-gray-100 w-full py-2 px-4 rounded-xl'/>
-        <div>
+        {/* <div>
           {categoryNames.map(catName => 
             <div key={catName}>
               {products.find(p => p.category === catName) && (
@@ -49,7 +50,8 @@ export default function Home({products}) {
              
             </div>
           )}  
-        </div>
+        </div> */}
+        {/* <Products/> */}
         <Head>
         <meta
           name="description"

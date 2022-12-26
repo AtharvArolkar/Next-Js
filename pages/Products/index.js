@@ -9,14 +9,7 @@ export default function Products({products}){
     const[phrase, setPhrase] =useState([]);
     // console.log(typeof(products))
     // products.map(p => p.description)
-    useEffect(() => {
-      window.OneSignal = window.OneSignal || [];
-      OneSignal.push(function () {
-        OneSignal.init({
-          appId: "1dc2c7d5-bf47-4500-8bfe-d5eed854a86e",
-        });
-      });
-    }, [])
+    
     const categoryNames = [... new Set(products.map(p => p.category))]
     // const categoryNames = products.map(p => p.category)
     console.log(categoryNames)
