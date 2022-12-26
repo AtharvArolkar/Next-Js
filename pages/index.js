@@ -13,6 +13,7 @@ import { findAllProducts } from './api/products';
 
 export default function Home({products}) {
   const[phrase, setPhrase] =useState([]);
+  console.log("Hi "+window.OneSignal)
   useEffect(() => {
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function () {
