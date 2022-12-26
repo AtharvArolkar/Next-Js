@@ -24,7 +24,7 @@ export default function Home({products}) {
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function () {
       OneSignal.init({
-        appId: "1dc2c7d5-bf47-4500-8bfe-d5eed854a86e",
+        appId: "78417f63-3be8-4dff-829a-35853d9c9801",
       });
     });
   }, [])
