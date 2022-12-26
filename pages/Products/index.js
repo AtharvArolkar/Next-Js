@@ -15,6 +15,7 @@ export default function Products({products}){
     // if(phrase){
     //     products=products.filter(p => p.name.toLowerCase().includes(phrase))
     // }
+    // .
     return(
         <Layout>
             <div>
