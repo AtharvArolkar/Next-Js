@@ -14,14 +14,14 @@ import Products from './Products';
 
 export default function Home({products}) {
   const[phrase, setPhrase] =useState([]);
-  useEffect(() => {
-    window.OneSignal = window.OneSignal || [];
-    OneSignal.push(function () {
-      OneSignal.init({
-        appId: "1dc2c7d5-bf47-4500-8bfe-d5eed854a86e",
-      });
-    });
-  }, [])
+  // useEffect(() => {
+  //   window.OneSignal = window.OneSignal || [];
+  //   OneSignal.push(function () {
+  //     OneSignal.init({
+  //       appId: "1dc2c7d5-bf47-4500-8bfe-d5eed854a86e",
+  //     });
+  //   });
+  // }, [])
 
   const categoryNames = [... new Set(products.map(p => p.category))]
   console.log(categoryNames)
@@ -63,6 +63,15 @@ export default function Home({products}) {
           src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
           async=""
         ></script>
+        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+        <script>
+          window.OneSignal = window.OneSignal || [];
+          OneSignal.push(function() {
+            OneSignal.init({
+              appId: "1dc2c7d5-bf47-4500-8bfe-d5eed854a86e",
+            })
+          });
+</script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="/Push-Notification-OneSignal-main/public/js/index.js"></script>
       </Head>
