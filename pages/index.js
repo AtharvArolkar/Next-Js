@@ -13,7 +13,7 @@ import Products from './Products';
 // const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({products}) {
-  const[phrase, setPhrase] =useState([]);
+  // const[phrase, setPhrase] =useState([]);
   useEffect(() => {
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function () {
@@ -26,12 +26,12 @@ export default function Home({products}) {
   const categoryNames = [... new Set(products.map(p => p.category))]
   console.log(categoryNames)
   // let productList;
-  if(phrase){
-    products=products.filter(p => p.name.toLowerCase().includes(phrase))
-  }
+  // if(phrase){
+  //   products=products.filter(p => p.name.toLowerCase().includes(phrase))
+  // }
   return (
     <Layout>
-      <input value={phrase} onChange={e => setPhrase(e.target.value)} type='text' placeholder="Search for Products" className='bg-gray-100 w-full py-2 px-4 rounded-xl'/>
+      {/* <input value={phrase} onChange={e => setPhrase(e.target.value)} type='text' placeholder="Search for Products" className='bg-gray-100 w-full py-2 px-4 rounded-xl'/> */}
         {/* <div>
           {categoryNames.map(catName => 
             <div key={catName}>
@@ -52,7 +52,7 @@ export default function Home({products}) {
           )}  
         </div> */}
         {/* <Products/> */}
-        <Head>
+        {/* <Head>
         <meta
           name="description"
           content="Integrating OneSignal with a Next.js app."
@@ -62,7 +62,7 @@ export default function Home({products}) {
         <script
           src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
           async=""
-        ></script>
+        ></script> */}
         {/* <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
         <script>
           window.OneSignal = window.OneSignal || [];
@@ -72,11 +72,11 @@ export default function Home({products}) {
             })
           });
 </script> */}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        {/* <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="/Push-Notification-OneSignal-main/public/js/index.js"></script>
-      </Head>
+      </Head> */}
 
-      <main className={styles.main}>
+      {/* <main className={styles.main}>
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h2>Documentation &rarr;</h2>
@@ -122,7 +122,7 @@ export default function Home({products}) {
           </span>
 
         </a>
-      </footer>
+      </footer> */}
         
     </Layout>
   )
