@@ -21,11 +21,11 @@ export default function Products({products}){
           {categoryNames.map(catName => 
             <div key={catName}>
               {products.find(p => p.category === catName) && (
-                <div>
-                  <h2 className='text-2xl py-5 capitalize'>{catName}</h2>
+                <div className="mb-20">
+                  <h2 className='text-2xl py-5 capitalize'><b>{catName}</b></h2>
                   <div className='flex -mx-5 overflow-x-scroll snap-x scrollbar-hide'>
                     {products.filter(p => p.category === catName).map(product =>(
-                      <div key={product._id} className='px-5 snap-start'>
+                      <div key={product._id} className='px-5 snap-start grid-cols-4'>
                         {/* {console.log(product)}
                         {console.log("Hello"+product.title)} */}
                         <ProductAPI product={product}/>
