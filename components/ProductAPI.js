@@ -3,13 +3,9 @@ import Image from 'next/image'
 import { useContext } from 'react'
 import { ProductsContext } from './ProductsContext'
 export default function ProductAPI(props){
-    const {setSelectedProducts} =useContext(ProductsContext)
     // console.log(picture[0])
     // const pic=picture.split(",")
-    function addProduct(){
-      let _id=0
-        setSelectedProducts(prev => [...prev,_id])
-    }
+   
     // console.log({props})
     const myLoader=({src})=>{
       return props.product.images[0];
@@ -29,7 +25,7 @@ export default function ProductAPI(props){
                 <div className='h-auto'></div>
                 <div className='flex absolute pt-2 inset-x-0 bottom-0'>
                   <div className='flex-grow text-2xl font-bold'>${props.product.price}</div>
-                  <button onClick={addProduct} className='bg-black text-white py-1 px-3 rounded-xl'>Add To Cart</button>
+                  <button onClick="" className='bg-black text-white py-1 px-3 rounded-xl'>Add To Cart</button>
                 </div>
               </div>
             </div>
