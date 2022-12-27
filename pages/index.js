@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 // import Product from "../../components/Product";
 import ProductAPI from "../components/ProductAPI";
 import Layout from "../components/Layout";
+import Head from "next/head";
 
 export default function Products({products}){
     const[phrase, setPhrase] =useState([]);
@@ -31,7 +32,13 @@ export default function Products({products}){
       });
     }, [])
     return(
-        <Layout>
+        <Layout>  
+          <Head>
+          <script
+          src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+          async=""
+        ></script>
+          </Head>
           <div>
           {categoryNames.map(catName => 
             <div key={catName}>
