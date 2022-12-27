@@ -19,26 +19,23 @@ export default function Products({products}){
     //     products=products.filter(p => p.name.toLowerCase().includes(phrase))
     // }
     // .
-    useEffect(() => {
+    // useEffect(() => {
       
-      window.OneSignal = window.OneSignal || [];
-      OneSignal.push(function () {
-        OneSignal.SERVICE_WORKER_PARAM = { scope: '/push/onesignal/' };
-        OneSignal.SERVICE_WORKER_PATH = 'push/onesignal/OneSignalSDKWorker.js'
-        OneSignal.SERVICE_WORKER_UPDATER_PATH = 'push/onesignal/OneSignalSDKUpdaterWorker.js'
-        OneSignal.init({
-          appId: "1dc2c7d5-bf47-4500-8bfe-d5eed854a86e",
-        });
-      });
-    }, [])
+    //   window.OneSignal = window.OneSignal || [];
+    //   OneSignal.push(function () {
+    //     // OneSignal.SERVICE_WORKER_PARAM = { scope: '/push/onesignal/' };
+    //     // OneSignal.SERVICE_WORKER_PATH = 'push/onesignal/OneSignalSDKWorker.js'
+    //     // OneSignal.SERVICE_WORKER_UPDATER_PATH = 'push/onesignal/OneSignalSDKUpdaterWorker.js'
+    //     OneSignal.init({
+    //       appId: "1dc2c7d5-bf47-4500-8bfe-d5eed854a86e",
+    //     });
+    //   });
+    // }, [])
     return(
         <Layout>  
-          <Head>
-          <script
-          src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
-          async=""
-        ></script>
-          </Head>
+          {/* <Head>
+          
+          </Head> */}
           <div>
           {categoryNames.map(catName => 
             <div key={catName}>

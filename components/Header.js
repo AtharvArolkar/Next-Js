@@ -8,11 +8,27 @@ export default function Header(){
     const {selectedProducts} = useContext(ProductsContext);
     console.log(path)
     const[phrase, setPhrase] =useState([]);
+    useEffect(() => {
+      
+        window.OneSignal = window.OneSignal || [];
+        OneSignal.push(function () {
+          // OneSignal.SERVICE_WORKER_PARAM = { scope: '/push/onesignal/' };
+          // OneSignal.SERVICE_WORKER_PATH = 'push/onesignal/OneSignalSDKWorker.js'
+          // OneSignal.SERVICE_WORKER_UPDATER_PATH = 'push/onesignal/OneSignalSDKUpdaterWorker.js'
+          OneSignal.init({
+            appId: "1dc2c7d5-bf47-4500-8bfe-d5eed854a86e",
+          });
+        });
+      }, [])
     return(
         <>
         
         <header className="sticky top-0 bg-white p-5 w-full text-black">
-       
+        <script
+                src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+                async="">
+         
+            </script>
             <div className=" flex space-x-12">
             <h3 className="text-2xl bg-white items-center"><b>BuyBuy</b></h3>
             <Link href={'/'} className={(path === '/'?'text-gray-400 ':'')+'flex justify-center items-center'}>
