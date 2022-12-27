@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from 'react'
 import { ProductsContext } from "./ProductsContext";
+import Script from 'next/script'
 export default function Header(){
     const router= useRouter();
     const path=router.pathname
@@ -29,6 +30,9 @@ export default function Header(){
                 async="">
          
             </script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
             <div className=" flex space-x-12">
             <h3 className="text-2xl bg-white items-center"><b>BuyBuy</b></h3>
             <Link href={'/'} className={(path === '/'?'text-gray-400 ':'')+'flex justify-center items-center'}>
@@ -59,10 +63,54 @@ export default function Header(){
             </svg>
             <span>Cart</span>
             </Link>
-
+            <button className={`addbutton btn waves-effect waves-light`} >Add to home screen
+            <i className="material-icons right">add</i>
+          </button>
+          <Script>
+        {`
+            let deferredPrompt;
+            const addBtn = document.querySelector(".addbutton");
+            console.log(addBtn);
+            addBtn.style.display = "none";
+            
+            window.addEventListener("beforeinstallprompt", (e) => {
+                // Prevent Chrome 67 and earlier from automatically showing the prompt
+                e.preventDefault();
+                // Stash the event so it can be triggered later.
+                deferredPrompt = e;
+                // Update UI to notify the user they can add to home screen
+                addBtn.style.display = "block";
+                listenToUserAction();
+            });
+            
+            // listen to install button clic
+            function listenToUserAction() {
+                addBtn.addEventListener("click", presentAddToHome);
+            }
+            
+            // addBtn.addEventListener("click", (e) => {
+            
+            function presentAddToHome() {
+                // hide our user interface that shows our A2HS button
+                addBtn.style.display = "none";
+                // Show the prompt
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === "accepted") {
+                        console.log("User accepted the A2HS prompt");
+                    } else {
+                        console.log("User dismissed the A2HS prompt");
+                    }
+                    deferredPrompt = null;
+                });
+            };
+        `}
+      </Script>
             
             </div>
         </header>
+
         </>
     )
 }

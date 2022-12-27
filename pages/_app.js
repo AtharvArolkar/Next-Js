@@ -1,6 +1,7 @@
 import { ProductsContextProvider } from '../components/ProductsContext'
 import '../styles/globals.css'
 
+
 export default function App({ Component, pageProps }) {
   
   // useEffect(() => {
