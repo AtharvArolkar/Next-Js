@@ -19,18 +19,20 @@ export default function Products({products}){
     // }
     // .
     useEffect(() => {
+      
       window.OneSignal = window.OneSignal || [];
       OneSignal.push(function () {
+        OneSignal.SERVICE_WORKER_PARAM = { scope: '/push/onesignal/' };
+        OneSignal.SERVICE_WORKER_PATH = 'push/onesignal/OneSignalSDKWorker.js'
+        OneSignal.SERVICE_WORKER_UPDATER_PATH = 'push/onesignal/OneSignalSDKUpdaterWorker.js'
         OneSignal.init({
           appId: "1dc2c7d5-bf47-4500-8bfe-d5eed854a86e",
         });
       });
     }, [])
     return(
-      
-      
         <Layout>
-            <div>
+          <div>
           {categoryNames.map(catName => 
             <div key={catName}>
               {products.find(p => p.category === catName) && (
@@ -62,12 +64,10 @@ export async function getServerSideProps(){
     const agent = new https.Agent({
         rejectUnauthorized: false
     })
-
     const response = await fetch('https://dummyjson.com/products',{agent})
     const data= await response.json()
     const data1=[...data.products]
     console.log(data1)
-
     return(
         {
             props:{
