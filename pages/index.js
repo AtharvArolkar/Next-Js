@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 // import Header from "../../components/Header";
 // import Layout from "../../components/Layout";
 // import Product from "../../components/Product";
-import ProductAPI from "../components/ProductAPI";
 import Layout from "../components/Layout";
 import Head from "next/head";
 import Script from 'next/script'
+import ProductAPI from "../components/ProductAPI";
 
 export default function Products({products}){
     const[phrase, setPhrase] =useState([]);

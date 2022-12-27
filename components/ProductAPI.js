@@ -17,7 +17,7 @@ export default function ProductAPI(props){
                 <Image className='rounded-xl' loader={myLoader} src={props.product.images[0]} alt='' width='240' height='240'/>
               </div>
               <div className='h-auto'></div>
-              <div className='flex flex-col h-40 relative'>
+              <div className=' h-40 relative'>
                 <div className='mt-2'>
                   <h3 className='font-bold text-lg'>{props.product.title}</h3>
                 </div>

@@ -2,7 +2,6 @@
 import { useState } from "react";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import Product from "../../components/Product";
 import ProductAPI from "../../components/ProductAPI";
 
 export default function Products({products}){

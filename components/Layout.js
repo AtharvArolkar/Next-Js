@@ -7,7 +7,7 @@ export default function Layout({children}){
             
             <Header/>
             {children}
-            <footer className="sticky bottom-0 bg-white p-5 w-full">
+            <footer className="sticky  bg-white p-5 w-full">
                 <a href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
                     target="_blank"
                     rel="noopener noreferrer">
