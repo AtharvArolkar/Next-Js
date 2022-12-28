@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from 'react'
 import { ProductsContext } from "./ProductsContext";
 import Script from 'next/script'
+import Head from "next/head";
 export default function Header(){
     const router= useRouter();
     const path=router.pathname
@@ -24,8 +25,13 @@ export default function Header(){
     return(
         <>
         
-        <header className="sticky  bg-neutral-400  p-1 w-full text-black rounded-xl mt-1">
-        
+        <Head className="sticky  bg-neutral-400  p-1 w-full text-black rounded-xl mt-1">
+        <title>BuyBuy</title>
+        <meta
+          name="description"
+          content="BuyBuy"
+        />
+        <link rel="icon" href="/icon.ico" />
         <script
                 src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
                 async="">
@@ -112,7 +118,7 @@ export default function Header(){
       </Script>
             
             </div>
-        </header>
+        </Head>
         
         </>
     )
