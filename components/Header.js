@@ -25,7 +25,7 @@ export default function Header(){
     return(
         <>
         
-        <Head className="sticky  bg-neutral-400  p-1 w-full text-black rounded-xl mt-1">
+        <header className="sticky  bg-neutral-400  p-1 w-full text-black rounded-xl mt-1">
         <title>BuyBuy</title>
         <meta
           name="description"
@@ -118,7 +118,7 @@ export default function Header(){
       </Script>
             
             </div>
-        </Head>
+        </header>
         
         </>
     )
