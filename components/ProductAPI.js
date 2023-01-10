@@ -25,7 +25,10 @@ export default function ProductAPI(props) {
       const newCart = cart.filter((item) => {
         return item.title !== productExists.title;
       });
-      console.log(newCart);
+      // Finding the base price
+      const intialPrice = productExists.price / productExists.quantity;
+      // Calculating the new cost based on the quantity
+      productExists.price += intialPrice;
       productExists.quantity += 1;
       newCart.push(productExists);
       setCart(newCart);

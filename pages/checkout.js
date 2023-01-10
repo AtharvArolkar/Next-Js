@@ -6,6 +6,7 @@ import CartContext from "../context/CartContext";
 
 export default function Checkout() {
   const { cart, setCart } = useContext(CartContext);
+  let amount = 0;
 
   if (cart.length === 0) {
     return (
@@ -15,14 +16,20 @@ export default function Checkout() {
     );
   }
 
+  // Increment the quantity of the product in the cart
   const incrementQuant = (product) => {
     const newCart = cart.filter((item) => {
       return item.title !== product.title;
     });
+    // Finding the base price
+    const intialPrice = product.price / product.quantity;
     product.quantity += 1;
+    // Calculating the new cost based on the quantity
+    product.price += intialPrice;
     setCart([...newCart, product]);
   };
 
+  // Decrement the quantity of the product in the cart
   const decrementQuant = (product) => {
     if (product.quantity === 0) {
       alert("Quantity cannot be negative!");
@@ -39,13 +46,18 @@ export default function Checkout() {
     const newCart = cart.filter((item) => {
       return item.title !== product.title;
     });
+    // Finding the base price
+    const intialPrice = product.price / product.quantity;
     product.quantity -= 1;
+    // Calculating the new cost based on the quantity
+    product.price -= intialPrice;
     setCart([...newCart, product]);
   };
 
   return (
     <Layout>
       {cart?.map((product) => {
+        amount += product.price;
         return (
           <div
             className="w-64 p-1 border rounded-xl p-2 my-10"
@@ -100,6 +112,12 @@ export default function Checkout() {
           </div>
         );
       })}
+      <div className="flex justify-center flex-col">
+        <h3>Your total amount is: ${amount}</h3>
+        <button className="bg-black text-white py-5 px-25 rounded-xl">
+          Checkout
+        </button>
+      </div>
     </Layout>
   );
 }
