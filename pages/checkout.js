@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Header from "../components/Header";
 import Layout from "../components/Layout";
 import CartContext from "../context/CartContext";
@@ -15,11 +15,42 @@ export default function Checkout() {
     );
   }
 
+  const incrementQuant = (product) => {
+    const newCart = cart.filter((item) => {
+      return item.title !== product.title;
+    });
+    product.quantity += 1;
+    setCart([...newCart, product]);
+  };
+
+  const decrementQuant = (product) => {
+    if (product.quantity === 0) {
+      alert("Quantity cannot be negative!");
+      return;
+    }
+    if (product.quantity === 1) {
+      const newCart = cart.filter((item) => {
+        return item.title !== product.title;
+      });
+      //   product.quantity -= 1;
+      setCart(newCart);
+      return;
+    }
+    const newCart = cart.filter((item) => {
+      return item.title !== product.title;
+    });
+    product.quantity -= 1;
+    setCart([...newCart, product]);
+  };
+
   return (
     <Layout>
       {cart?.map((product) => {
         return (
-          <div className="w-64 p-1 border rounded-xl p-2">
+          <div
+            className="w-64 p-1 border rounded-xl p-2 my-10"
+            key={product.title}
+          >
             {/* <div className="bg-white p-5 rounded-xl flex h-80 justify-center items-center">
               <Image
                 className="rounded-xl"
@@ -42,11 +73,30 @@ export default function Checkout() {
                 <div className="flex-grow text-2xl font-bold">
                   ${product.price}
                 </div>
-                <button className="bg-black text-white py-1 px-3 rounded-xl">
-                  Buy Now
-                </button>
+                <div className="flex mx-5">
+                  <button
+                    className="bg-black text-white py-1 px-3 rounded-xl"
+                    onClick={() => {
+                      decrementQuant(product);
+                    }}
+                  >
+                    -
+                  </button>
+                  <p className="mx-5">{product?.quantity}</p>
+                  <button
+                    className="bg-black text-white py-1 px-3 rounded-xl"
+                    onClick={() => {
+                      incrementQuant(product);
+                    }}
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
+            <button className="bg-black text-white py-1 px-3 rounded-xl">
+              Buy Now
+            </button>
           </div>
         );
       })}

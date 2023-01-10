@@ -16,9 +16,26 @@ export default function ProductAPI(props) {
   };
 
   const addToCart = (product) => {
-    setCart((prevCart) => {
-      return [...prevCart, product];
+    const productExists = cart.find((item) => {
+      return item.title === product.title;
     });
+    console.log(productExists);
+
+    if (productExists) {
+      const newCart = cart.filter((item) => {
+        return item.title !== productExists.title;
+      });
+      console.log(newCart);
+      productExists.quantity += 1;
+      newCart.push(productExists);
+      setCart(newCart);
+    } else {
+      product.quantity = 1;
+      setCart((prevCart) => {
+        return [...prevCart, product];
+      });
+    }
+
     alert(`${product.title} has been added to the cart!`);
   };
 
