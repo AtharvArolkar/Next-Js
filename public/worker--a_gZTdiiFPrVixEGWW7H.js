@@ -1,1 +1,0 @@
-self.addEventListener("fetch",(e=>{navigator.onLine?console.log("You currently online!"):console.log("Your are Offline now!")}));
