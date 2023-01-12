@@ -143,6 +143,7 @@ export default function Header() {
               </div>
             </span>
           </Link>
+          {path === "/" ? 
           <div className="w-full flex justify-end items-center">
             <button
               className={`addbutton btn waves-effect waves-light flex right-0`}
@@ -151,6 +152,9 @@ export default function Header() {
               <i className="material-icons right">file_download</i>
             </button>
           </div>
+          : <div></div>}
+
+
           <Script>
             {`
             let deferredPrompt;
