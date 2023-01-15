@@ -1,11 +1,12 @@
-import { ProductsContextProvider } from "../components/ProductsContext";
 import "../styles/globals.css";
-import CartState from "../context/CartState";
+
+import { Provider } from "react-redux";
+import store from "../redux/store";
 
 export default function App({ Component, pageProps }) {
   return (
-    <CartState>
-      <Component {...pageProps} />
-    </CartState>
+    <Provider store={store}>
+        <Component {...pageProps} />
+    </Provider>
   );
 }

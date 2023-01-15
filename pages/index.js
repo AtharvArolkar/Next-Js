@@ -177,8 +177,6 @@ export async function getServerSideProps() {
 
   const data1 = [...data.products];
 
-  console.log(data1);
-
   return {
     props: {
       products: data1,

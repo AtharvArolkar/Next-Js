@@ -4,12 +4,12 @@ import { useContext, useEffect, useState } from "react";
 import { ProductsContext } from "./ProductsContext";
 import Script from "next/script";
 import Head from "next/head";
-import CartContext from "../context/CartContext";
+import { useSelector } from "react-redux";
 
 export default function Header() {
   const router = useRouter();
   const path = router.pathname;
-  const { cart, setCart } = useContext(CartContext);
+  const [cart, setCart] = useState([]);
   const { selectedProducts } = useContext(ProductsContext);
   console.log(path);
   const [phrase, setPhrase] = useState([]);
@@ -27,13 +27,15 @@ export default function Header() {
     });
   }, []);
 
+  // Consuming the data from the store
+  const getCart = useSelector((state) => {
+    return state.cartReducer.cart;
+  });
+
   useEffect(() => {
-    let totalQuant = 0;
-    for (let i = 0; i < cart.length; i += 1) {
-      totalQuant += cart[i].quantity;
-    }
-    setCartQuant(totalQuant);
-  }, [cart]);
+    setCart(getCart);
+    setCartQuant(getCart.length);
+  }, [getCart]);
 
   return (
     <>
@@ -143,17 +145,18 @@ export default function Header() {
               </div>
             </span>
           </Link>
-          {path === "/" ? 
-          <div className="w-full flex justify-end items-center">
-            <button
-              className={`addbutton btn waves-effect waves-light flex right-0`}
-            >
-              Add to home screen
-              <i className="material-icons right">file_download</i>
-            </button>
-          </div>
-          : <div></div>}
-
+          {path === "/" ? (
+            <div className="w-full flex justify-end items-center">
+              <button
+                className={`addbutton btn waves-effect waves-light flex right-0`}
+              >
+                Add to home screen
+                <i className="material-icons right">file_download</i>
+              </button>
+            </div>
+          ) : (
+            <div></div>
+          )}
 
           <Script>
             {`

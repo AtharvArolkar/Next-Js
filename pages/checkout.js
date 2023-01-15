@@ -1,12 +1,48 @@
 import Image from "next/image";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
 import Layout from "../components/Layout";
-import CartContext from "../context/CartContext";
+import { useDispatch, useSelector } from "react-redux";
+import { ADD, DELETE, REMOVE } from "../redux/actions/action";
 
 export default function Checkout() {
-  const { cart, setCart } = useContext(CartContext);
+  // Consuming the data from the store
+  const getCart = useSelector((state) => {
+    return state.cartReducer.cart;
+  });
+
+  const [price, setPrice] = useState(0);
+  const [cart, setCart] = useState(getCart);
+
+  useEffect(() => {
+    setCart(getCart);
+  }, [getCart]);
+
+  // Getting the price of the product
+  const getPrice = ({ price, quantity }) => {
+    const totalPrice = (price / quantity) * quantity;
+    return totalPrice;
+  };
+
+  const dispatch = useDispatch();
+  const compareProducts = (product) => {
+    let comparedData = getCart.filter((item) => {
+      return item.title === product.title;
+    });
+
+    return comparedData;
+  };
   let amount = 0;
+
+  useEffect(() => {
+    if (navigator.onLine) {
+      console.log("You currently online! -> Charity Page");
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } else {
+      console.log("Your are Offline now! -> Charity Page");
+      setCart(JSON.parse(localStorage.getItem("cart")));
+    }
+  }, [cart]);
 
   if (cart.length === 0) {
     return (
@@ -18,15 +54,9 @@ export default function Checkout() {
 
   // Increment the quantity of the product in the cart
   const incrementQuant = (product) => {
-    const newCart = cart.filter((item) => {
-      return item.title !== product.title;
-    });
-    // Finding the base price
-    const intialPrice = product.price / product.quantity;
-    product.quantity += 1;
-    // Calculating the new cost based on the quantity
-    product.price += intialPrice;
-    setCart([...newCart, product]);
+    console.log(compareProducts(product));
+    dispatch(ADD(product));
+    getPrice(product);
   };
 
   // Decrement the quantity of the product in the cart
@@ -36,28 +66,22 @@ export default function Checkout() {
       return;
     }
     if (product.quantity === 1) {
-      const newCart = cart.filter((item) => {
-        return item.title !== product.title;
-      });
-      //   product.quantity -= 1;
-      setCart(newCart);
+      dispatch(DELETE(product.title));
       return;
     }
-    const newCart = cart.filter((item) => {
-      return item.title !== product.title;
-    });
-    // Finding the base price
-    const intialPrice = product.price / product.quantity;
-    product.quantity -= 1;
-    // Calculating the new cost based on the quantity
-    product.price -= intialPrice;
-    setCart([...newCart, product]);
+
+    dispatch(REMOVE(product));
+  };
+
+  const removeFromCart = (product) => {
+    dispatch(DELETE(product.title));
+    // setCart(getCart);
   };
 
   return (
     <Layout>
       {cart?.map((product) => {
-        amount += product.price;
+        amount += product.price * product.quantity;
         return (
           <div
             className="w-64 p-1 border rounded-xl p-2 my-10"
@@ -106,9 +130,19 @@ export default function Checkout() {
                 </div>
               </div>
             </div>
-            <button className="bg-black text-white py-1 px-3 rounded-xl">
-              Buy Now
-            </button>
+            <div className="my-5">
+              <button
+                onClick={() => {
+                  removeFromCart(product);
+                }}
+                className="bg-black mx-5 text-white py-1 px-3 rounded-xl"
+              >
+                Remove
+              </button>
+              <button className="bg-black text-white py-1 px-3 rounded-xl">
+                Buy Now
+              </button>
+            </div>
           </div>
         );
       })}
