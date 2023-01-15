@@ -3,41 +3,34 @@ import Image from "next/image";
 import { ProductsContext } from "./ProductsContext";
 import React, { useContext, useEffect, useState } from "react";
 import CartContext from "../context/CartContext";
+import { useDispatch, useSelector } from "react-redux";
+import { ADD } from "../redux/actions/action";
 
 export default function ProductAPI(props) {
-  // console.log(picture[0])
-  // const pic=picture.split(",")
+  // Consuming the data from the store
+  const getCart = useSelector((state) => {
+    return state.cartReducer.cart;
+  });
 
-  // console.log({props})
-  const { cart, setCart } = useContext(CartContext);
+  const [cart, setCart] = useState(getCart);
+
+  useEffect(() => {
+    setCart(getCart);
+  }, [getCart]);
+
+  // Adding an item to the cart
+  const dispatch = useDispatch();
 
   const myLoader = ({ src }) => {
     return props.product.images[0];
   };
 
   const addToCart = (product) => {
-    const productExists = cart.find((item) => {
-      return item.title === product.title;
+    // Adding the item to the redux store
+    dispatch(ADD(product));
+    setCart((prevCart) => {
+      return [...prevCart, product];
     });
-    console.log(productExists);
-
-    if (productExists) {
-      const newCart = cart.filter((item) => {
-        return item.title !== productExists.title;
-      });
-      // Finding the base price
-      const intialPrice = productExists.price / productExists.quantity;
-      // Calculating the new cost based on the quantity
-      productExists.price += intialPrice;
-      productExists.quantity += 1;
-      newCart.push(productExists);
-      setCart(newCart);
-    } else {
-      product.quantity = 1;
-      setCart((prevCart) => {
-        return [...prevCart, product];
-      });
-    }
 
     alert(`${product.title} has been added to the cart!`);
   };
