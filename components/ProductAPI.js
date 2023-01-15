@@ -1,8 +1,6 @@
 import { set } from "mongoose";
 import Image from "next/image";
-import { ProductsContext } from "./ProductsContext";
 import React, { useContext, useEffect, useState } from "react";
-import CartContext from "../context/CartContext";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD } from "../redux/actions/action";
 

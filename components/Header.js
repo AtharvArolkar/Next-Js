@@ -4,7 +4,6 @@ import { useContext, useEffect, useState } from "react";
 import { ProductsContext } from "./ProductsContext";
 import Script from "next/script";
 import Head from "next/head";
-import CartContext from "../context/CartContext";
 import { useSelector } from "react-redux";
 
 export default function Header() {

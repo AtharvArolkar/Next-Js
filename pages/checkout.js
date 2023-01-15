@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
 import Layout from "../components/Layout";
-import CartContext from "../context/CartContext";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD, DELETE, REMOVE } from "../redux/actions/action";
 
