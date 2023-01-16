@@ -1,6 +1,28 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 
 export default function Charity() {
+  const [charityData, setCharityData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/api/charities")
+      .then((res) => {
+        setCharityData(res.data);
+        localStorage.setItem("charities", JSON.stringify(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    if (navigator.onLine) {
+      console.log('Currently online -> Charity');
+    } else {
+      setCharityData(JSON.parse(localStorage.getItem("charities")));
+    }
+  }, []);
+
   return (
     <Layout>
       <div>
@@ -12,14 +34,7 @@ export default function Charity() {
           choose the ones that align with yours.
         </h5>
         <div>
-          {[
-            { alpha: "A", name: "Aspen Education Foundation" },
-            { alpha: "B", name: "Bspen Education Foundation" },
-            { alpha: "C", name: "Cspen Education Foundation" },
-            { alpha: "H", name: "Hspen Education Foundation" },
-            { alpha: "X", name: "Xspen Education Foundation" },
-            { alpha: "Y", name: "Yspen Education Foundation" },
-          ].map((charity) => {
+          {charityData.map((charity) => {
             return (
               <div className="flex m-10 items-center" key={charity.alpha}>
                 <h4>{charity.alpha}</h4>
