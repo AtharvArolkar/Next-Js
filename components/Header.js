@@ -35,6 +35,12 @@ export default function Header() {
   useEffect(() => {
     setCart(getCart);
     setCartQuant(getCart.length);
+    if (navigator.onLine) {
+      localStorage.setItem("cart", JSON.stringify(getCart));
+    } else {
+      setCart(JSON.parse(localStorage.getItem("cart")));
+      setCartQuant(JSON.parse(localStorage.getItem("cart").length));
+    }
   }, [getCart]);
 
   return (

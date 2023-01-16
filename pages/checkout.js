@@ -54,7 +54,6 @@ export default function Checkout() {
 
   // Increment the quantity of the product in the cart
   const incrementQuant = (product) => {
-    console.log(compareProducts(product));
     dispatch(ADD(product));
     getPrice(product);
   };
