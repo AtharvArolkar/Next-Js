@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import { ProductsContext } from "./ProductsContext";
 import Script from "next/script";
 import Head from "next/head";
 import { useSelector } from "react-redux";
@@ -10,7 +9,6 @@ export default function Header() {
   const router = useRouter();
   const path = router.pathname;
   const [cart, setCart] = useState([]);
-  const { selectedProducts } = useContext(ProductsContext);
   console.log(path);
   const [phrase, setPhrase] = useState([]);
   const [cartQuant, setCartQuant] = useState(0);
