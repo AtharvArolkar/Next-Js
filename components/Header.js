@@ -39,7 +39,7 @@ export default function Header() {
       localStorage.setItem("cart", JSON.stringify(getCart));
     } else {
       setCart(JSON.parse(localStorage.getItem("cart")));
-      setCartQuant(JSON.parse(localStorage.getItem("cart").length));
+      setCartQuant(JSON.parse(localStorage.getItem("cart")).length);
     }
   }, [getCart]);
 
