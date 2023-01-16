@@ -14,6 +14,13 @@ export default function ProductAPI(props) {
 
   useEffect(() => {
     setCart(getCart);
+    if (navigator.onLine) {
+      console.log("You currently online! -> Product List Page");
+      localStorage.setItem("cart", JSON.stringify(getCart));
+    } else {
+      console.log("Your are Offline now! -> Product List Page");
+      setCart(JSON.parse(localStorage.getItem("cart")));
+    }
   }, [getCart]);
 
   // Adding an item to the cart
