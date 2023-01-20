@@ -3,14 +3,12 @@ const withPWA = require("next-pwa")({
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === "development",
-  swSrc: "service-worker.js",
   fallbacks: {
     document: "/_offline",
   },
 });
 
 const nextConfig = withPWA({
-  generateSw: false,
   reactStrictMode: true,
 });
 
