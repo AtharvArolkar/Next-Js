@@ -20,7 +20,7 @@ export default function Header() {
       // OneSignal.SERVICE_WORKER_PATH = 'push/onesignal/OneSignalSDKWorker.js'
       // OneSignal.SERVICE_WORKER_UPDATER_PATH = 'push/onesignal/OneSignalSDKUpdaterWorker.js'
       OneSignal.init({
-        appId: "1dc2c7d5-bf47-4500-8bfe-d5eed854a86e",
+        appId: "2ffa3682-2f6f-4743-b566-b4d073eec6c4",
       });
     });
   }, []);
